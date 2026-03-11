@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet Decision Button</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#141e30,#243b55);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.container{
+    text-align:center;
+    background:rgba(0,0,0,0.4);
+    padding:40px;
+    border-radius:20px;
+    width:320px;
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    padding:12px 20px;
+    font-size:16px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#00c3ff;
+    color:black;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#00a6d6;
+}
+
+#wheel{
+    margin:25px auto;
+    font-size:20px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.spin{
+    animation:spin 0.1s infinite;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    50%{transform:rotate(10deg);}
+    100%{transform:rotate(-10deg);}
+}
+
+#result{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌐 Internet Decision Button</h1>
+<p>Can't decide? Let the internet choose.</p>
+
+<input id="choice1" placeholder="First option">
+<input id="choice2" placeholder="Second option">
+
+<button onclick="decide()">Decide For Me</button>
+
+<div id="wheel">🤔</div>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function decide(){
+
+let c1 = document.getElementById("choice1").value;
+let c2 = document.getElementById("choice2").value;
+
+if(c1 === "" || c2 === ""){
+alert("Enter two choices!");
+return;
+}
+
+let wheel = document.getElementById("wheel");
+let result = document.getElementById("result");
+
+wheel.classList.add("spin");
+result.innerText = "";
+
+let choices = [c1, c2];
+
+setTimeout(()=>{
+
+wheel.classList.remove("spin");
+
+let pick = choices[Math.floor(Math.random()*2)];
+
+let responses = [
+"The universe has spoken:",
+"Internet says:",
+"You should choose:",
+"Your fate is:",
+"Obviously:"
+];
+
+let text = responses[Math.floor(Math.random()*responses.length)];
+
+result.innerText = text + " " + pick;
+
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
